@@ -25,7 +25,7 @@ export class AuthEffects {
         type: AuthActions.SIGNUP
       },
       {
-        type: AuthActions.SIGNUP,
+        type: AuthActions.SET_TOKEN,
         payload: token,
       },
     ];
@@ -43,6 +43,10 @@ export class AuthEffects {
     return [
       {
         type: AuthActions.SIGNIN,
+        payload: token,
+      },
+      {
+        type: AuthActions.SET_TOKEN,
         payload: token,
       },
     ];
