@@ -1,4 +1,6 @@
+import { Injectable } from '@angular/core';
 import { Actions, Effect } from '@ngrx/effects';
+import { Store } from '@ngrx/store';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/withLatestFrom';
 
@@ -6,8 +8,8 @@ import { Recipe } from '../recipe.model';
 import { HttpClient, HttpRequest } from '@angular/common/http';
 import * as RecipeActions from './recipe.actions';
 import * as fromRecipe from './recipe.reducers';
-import { Store } from '@ngrx/store';
 
+@Injectable()
 export class RecipeEffects {
   @Effect()
   recipeFetch = this.actions$.ofType(RecipeActions.FETCH_RECIPES).switchMap((actions: RecipeActions.FetchRecipes) => {
@@ -43,6 +45,6 @@ export class RecipeEffects {
       return this.httpClient.request(req);
     });
 
-  constructor(private actions$: Actions, private httpClient: HttpClient, private store: Store<fromRecipe.State>) {
+  constructor(private actions$: Actions, private httpClient: HttpClient, private store: Store<fromRecipe.FeatureState>) {
   }
 }
